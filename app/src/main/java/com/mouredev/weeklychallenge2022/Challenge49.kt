@@ -1,5 +1,3 @@
-package com.mouredev.weeklychallenge2022
-
 /*
  * Reto #49
  * EL DETECTOR DE HANDLES
@@ -21,5 +19,39 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+var text = "@Jansel aisfklafslk amfkldmfa #casa adkslmaf @hermes in https://loco.com #common http://loco."
+
+console.log(getUsersHandles(text))
+console.log(getHashtagsHandles(text))
+console.log(getWebsHandles(text))
+
+function getUsersHandles(text){
+  return getHandles(text,
+    function(e){
+      return e.startsWith("@")
+    }
+    )
+}
+function getHashtagsHandles(text){
+  return getHandles(text,
+    function(e){
+      return e.startsWith("#")
+    }
+    )
+}
+
+function getWebsHandles(text){
+  return getHandles(text,
+    function(e){
+      return (e.startsWith("www.") || 
+      e.startsWith("http://") ||  
+      e.startsWith("https://")) &&
+      (e.endsWith(".com") || e.endsWith(".es"))
+    }
+    )
+}
+function getHandles(text, fn){
+  return text.split(" ").filter(e=> fn(e))
+}
 
 
