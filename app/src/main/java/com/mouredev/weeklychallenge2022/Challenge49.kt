@@ -1,5 +1,3 @@
-package com.mouredev.weeklychallenge2022
-
 /*
  * Reto #49
  * EL DETECTOR DE HANDLES
@@ -12,14 +10,15 @@ package com.mouredev.weeklychallenge2022
  * - Handle usuario: Los que comienzan por "@"
  * - Handle hashtag: Los que comienzan por "#"
  * - Handle web: Los que comienzan por "www.", "http://", "https://" y finalizan con un dominio (.com, .es...)
- *
- * Información adicional:
- * - Usa el canal de nuestro Discord (https://mouredev.com/discord) "🔁reto-semanal"
- *   para preguntas, dudas o prestar ayuda a la comunidad.
- * - Tienes toda la información sobre los retos semanales en
- *   https://retosdeprogramacion.com/semanales2022.
- *
+ * 
  */
+function getHandlers(text){
+    var handlers = text.match( /@\w{1,}/g )
+    handlers.push(...text.match(/#\w{1,}/g))
+    handlers.push(...text.match(/(((http|https):\/\/)|www.)(\S){1,}.(com|es|io|dev|org)/g))
+    return handlers
+}
 
+var text = "@MoureDev es el hombre con la mejor barba del mundo. #barbaalpha. Atentos con el calendario de @aDEViento. Más info en: https://adviento.dev #retos_de_programacion con @MoureDev. Todos los retos disponibles en https://retosdeprogramacion.com. Busca las expresiones regulares en https://developer.mozilla.org"
 
-
+console.log(getHandlers(text))
